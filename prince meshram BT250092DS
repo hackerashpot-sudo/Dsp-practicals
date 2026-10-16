@@ -1,0 +1,502 @@
+# ==================== PRACTICAL 0 ====================
+x = 5
+x += 2   # x becomes 7
+print(x)
+
+x = 10
+if x > 5:
+    print("Greater than 5")
+
+x = 3
+if x % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+
+marks = 75
+if marks >= 90:
+    print("A Grade")
+elif marks >= 60:
+    print("B Grade")
+else:
+    print("C Grade")
+
+for i in range(5):
+    print(i)
+
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+
+for i in range(5):
+    if i == 3:
+        break
+    print(i)
+
+
+# ==================== PRACTICAL 1 ====================
+print("=== Student Data System ===")
+
+name = input("Enter student name: ")
+roll_no = int(input("Enter roll number: "))
+age = int(input("Enter age: "))
+marks = float(input("Enter marks: "))
+is_pass = marks >= 40
+
+percentage = (marks / 100) * 100
+
+print("\n=== Student Details ===")
+print("Name:", name)
+print("Roll Number:", roll_no)
+print("Age:", age)
+print("Marks:", marks)
+print("Percentage:", percentage)
+print("Result:", "Pass" if is_pass else "Fail")
+
+print("\n=== Data Types Used ===")
+print("Type of name:", type(name))
+print("Type of roll_no:", type(roll_no))
+print("Type of age:", type(age))
+print("Type of marks:", type(marks))
+print("Type of is_pass:", type(is_pass))
+
+
+# ==================== PRACTICAL 2 ====================
+a = 10
+b = 5
+
+print("Addition:", a + b)
+print("Division:", a / b)
+print("a > b:", a > b)
+print("a > 5 and b < 10:", a > 5 and b < 10)
+print("a & b:", a & b)
+
+a += b
+print("Updated a:", a)
+
+list1 = [1, 2, 3, 4]
+print("2 in list1:", 2 in list1)
+
+x = 10
+y = 10
+print("x is y:", x is y)
+
+
+# ==================== PRACTICAL 3 ====================
+numbers = [10, 20, 30, 40, 50]
+
+print("First element:", numbers[0])
+print("Last element:", numbers[-1])
+
+numbers[2] = 35
+print("Updated list:", numbers)
+
+numbers.append(60)
+numbers.insert(1, 15)
+print("After insertion:", numbers)
+
+numbers.remove(40)
+del numbers[0]
+print("After deletion:", numbers)
+
+print("Length:", len(numbers))
+print("Max:", max(numbers))
+print("Min:", min(numbers))
+numbers.sort()
+print("Sorted list:", numbers)
+
+
+# ==================== PRACTICAL 4 ====================
+t = (10, 20, 30, 40)
+print("Tuple element:", t[1])
+
+s = {1, 2, 3, 4}
+s.add(5)
+s.remove(2)
+print("Set:", s)
+
+student = {"name": "Amit", "age": 20, "marks": 85}
+print("Name:", student["name"])
+student["marks"] = 90
+student["city"] = "Nagpur"
+del student["age"]
+
+print("Updated Dictionary:", student)
+print("Dictionary keys:", student.keys())
+print("Dictionary values:", student.values())
+print("Dictionary items:", student.items())
+
+
+# ==================== PRACTICAL 5 ====================
+# my_module.py (alag file mein save karna):
+# def add(a, b):
+#     return a + b
+#
+# def multiply(a, b):
+#     return a * b
+
+import math
+
+num = 16
+print("Square root:", math.sqrt(num))
+print("Factorial:", math.factorial(5))
+print("Power:", math.pow(2, 3))
+print("Log:", math.log(10))
+
+from functools import reduce
+numbers = [1, 2, 3, 4, 5]
+result = reduce(lambda x, y: x + y, numbers)
+print("Sum using reduce:", result)
+
+# import my_module
+# print("Addition:", my_module.add(5, 3))
+# print("Multiplication:", my_module.multiply(4, 2))
+
+
+# ==================== PRACTICAL 6 ====================
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+print("Array:", arr)
+
+print("Zeros:\n", np.zeros((2,2)))
+print("Ones:\n", np.ones((3,3)))
+print("Full:\n", np.full((2,2), 7))
+print("Random:\n", np.random.rand(2,2))
+
+arr = np.array([[1,2,3],
+                [4,5,6],
+                [7,8,9]])
+
+print("Element:", arr[1][2])
+print("Slice:\n", arr[0:2, 1:3])
+
+new_arr = arr.reshape(1, 9)
+print("Reshaped:", new_arr)
+
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+
+print("Addition:", a + b)
+print("Multiplication:", a * b)
+print("Mean:", np.mean(a))
+print("Sum:", np.sum(b))
+
+
+# ==================== PRACTICAL 7 ====================
+def linear_search(arr, key):
+    for i in range(len(arr)):
+        if arr[i] == key:
+            return i
+    return -1
+
+arr = [10, 25, 30, 45, 60]
+key = 30
+result = linear_search(arr, key)
+
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+
+
+def binary_search(arr, key):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+arr = [10, 20, 30, 40, 50]
+key = 40
+print("Index:", binary_search(arr, key))
+
+
+# ==================== PRACTICAL 8 ====================
+# A) Singly Linked List
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+ll = LinkedList()
+ll.insert(10)
+ll.insert(20)
+ll.insert(30)
+ll.display()
+
+
+# B) Doubly Linked List (manual mein sirf Node class hai)
+class DNode:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+
+
+# C) Circular Linked List
+class CNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = CNode(data)
+
+        if not self.head:
+            self.head = new_node
+            new_node.next = self.head
+        else:
+            temp = self.head
+            while temp.next != self.head:
+                temp = temp.next
+            temp.next = new_node
+            new_node.next = self.head
+
+    def display(self):
+        temp = self.head
+        if self.head:
+            while True:
+                print(temp.data, end=" -> ")
+                temp = temp.next
+                if temp == self.head:
+                    break
+        print("(back to head)")
+
+cll = CircularLinkedList()
+cll.insert(5)
+cll.insert(10)
+cll.insert(15)
+cll.display()
+
+
+# ==================== PRACTICAL 9 ====================
+stack = []
+
+stack.append(10)
+stack.append(20)
+stack.append(30)
+print("Stack:", stack)
+
+stack.pop()
+print("After pop:", stack)
+
+print("Top element:", stack[-1])
+
+
+def precedence(op):
+    if op == '+' or op == '-':
+        return 1
+    if op == '*' or op == '/':
+        return 2
+    return 0
+
+def infix_to_postfix(expression):
+    stack = []
+    result = ""
+
+    for char in expression:
+        if char.isalnum():
+            result += char
+        elif char == '(':
+            stack.append(char)
+        elif char == ')':
+            while stack and stack[-1] != '(':
+                result += stack.pop()
+            stack.pop()
+        else:
+            while stack and precedence(stack[-1]) >= precedence(char):
+                result += stack.pop()
+            stack.append(char)
+
+    while stack:
+        result += stack.pop()
+
+    return result
+
+expr = "A+B*C"
+print("Postfix:", infix_to_postfix(expr))
+
+
+# ==================== PRACTICAL 10 ====================
+# (Menu program: Exit karne ke liye option 5 dabana, tabhi aage ka code chalega)
+from collections import deque
+
+task_queue = deque()   # Queue (FIFO)
+undo_stack = []        # Stack (LIFO)
+
+
+def add_task(task):
+    task_queue.append(task)
+    print(f"Task added: {task}")
+
+
+def process_task():
+    if task_queue:
+        task = task_queue.popleft()
+        undo_stack.append(task)
+        print(f"Processed task: {task}")
+    else:
+        print("No tasks to process")
+
+
+def undo_task():
+    if undo_stack:
+        task = undo_stack.pop()
+        print(f"Undo last processed task: {task}")
+    else:
+        print("Nothing to undo")
+
+
+def show_tasks():
+    print("\nPending Tasks (Queue):", list(task_queue))
+    print("Undo Stack:", undo_stack)
+
+
+while True:
+    print("\n====== TASK MANAGER ======")
+    print("1. Add Task")
+    print("2. Process Task")
+    print("3. Undo Task")
+    print("4. Show Tasks")
+    print("5. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        task = input("Enter task: ")
+        add_task(task)
+    elif choice == "2":
+        process_task()
+    elif choice == "3":
+        undo_task()
+    elif choice == "4":
+        show_tasks()
+    elif choice == "5":
+        print("Exiting system...")
+        break
+    else:
+        print("Invalid choice")
+
+
+# ==================== PRACTICAL 11 ====================
+class Node:
+    def __init__(self, name):
+        self.name = name
+        self.left = None
+        self.right = None
+
+
+class FileSystem:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, name):
+        if root is None:
+            return Node(name)
+
+        if name < root.name:
+            root.left = self.insert(root.left, name)
+        else:
+            root.right = self.insert(root.right, name)
+
+        return root
+
+    def search(self, root, name):
+        if root is None:
+            return False
+
+        if root.name == name:
+            return True
+        elif name < root.name:
+            return self.search(root.left, name)
+        else:
+            return self.search(root.right, name)
+
+    def inorder(self, root):
+        if root:
+            self.inorder(root.left)
+            print(root.name, end=" ")
+            self.inorder(root.right)
+
+    def preorder(self, root):
+        if root:
+            print(root.name, end=" ")
+            self.preorder(root.left)
+            self.preorder(root.right)
+
+    def postorder(self, root):
+        if root:
+            self.postorder(root.left)
+            self.postorder(root.right)
+            print(root.name, end=" ")
+
+
+fs = FileSystem()
+root = None
+
+while True:
+    print("\n====== FILE SYSTEM MENU ======")
+    print("1. Insert File/Folder")
+    print("2. Search File/Folder")
+    print("3. Inorder Display")
+    print("4. Preorder Display")
+    print("5. Postorder Display")
+    print("6. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        name = input("Enter file/folder name: ")
+        root = fs.insert(root, name)
+        print("Inserted successfully")
+    elif choice == "2":
+        name = input("Enter name to search: ")
+        if fs.search(root, name):
+            print("Found in system")
+        else:
+            print("Not found")
+    elif choice == "3":
+        print("Inorder (Sorted View):")
+        fs.inorder(root)
+    elif choice == "4":
+        print("Preorder (Structure View):")
+        fs.preorder(root)
+    elif choice == "5":
+        print("Postorder View:")
+        fs.postorder(root)
+    elif choice == "6":
+        print("Exiting system...")
+        break
+    else:
+        print("Invalid choice")
